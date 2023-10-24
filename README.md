@@ -34,7 +34,6 @@
 ### Association
 - belongs_to :user
 - has_one :record
-- has_one :information
 
 
 
@@ -47,7 +46,7 @@
 | item            | references     | null: false, foreign_key: true    |
 
 ### Association
-- has_one :user
+- belongs_to :user
 - belongs_to :item
 - has_one :information
 
