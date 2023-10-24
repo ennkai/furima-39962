@@ -13,6 +13,7 @@
 
 ### Association
 - has_many :items
+- has_many :records
 
 
 
@@ -28,7 +29,7 @@
 | user                   | references | null: false, foreign_key: true   |
 | delivery_id            | integer    | null: false                      |
 | load_id                | integer    | null: false                      |
-| prefecture             | integer    | null: false                      |
+| prefecture_id          | integer    | null: false                      |
 
 ### Association
 - belongs_to :user
@@ -40,12 +41,13 @@
 ## records テーブル
 
 
-| Columu                 | Type           | Options                           |
-|------------------------|----------------|-----------------------------------|
-| information            | references     | null: false, foreign_key: true    |
-
+| Columu          | Type           | Options                           |
+|-----------------|----------------|-----------------------------------|
+| user            | references     | null: false, foreign_key: true    |
+| item            | references     | null: false, foreign_key: true    |
 
 ### Association
+- has_one :user
 - belongs_to :item
 - has_one :information
 
@@ -57,16 +59,14 @@
 | Columu                 | Type       | Options                           |
 |------------------------|------------|-----------------------------------|
 | postal_code            | string     | null: false                       |
-| prefecture_id          | string     | null: false, foreign_key: true    |
+| prefecture_id          | integer    | null: false                       |
 | city                   | string     | null: false                       |
 | house_number           | string     | null: false                       |
 | building_name          | string     |                                   |
 | telephone              | string     | null: false                       |
-| item                   | references | null: false, foreign_key: true    |
-| user                   | references | null: false, foreign_key: true    |
+| record                 | references | null: false, foreign_key: true    |
 
 
 ### Association
 
 - belongs_to :record
-- has_one :item
