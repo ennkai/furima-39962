@@ -6,6 +6,7 @@ RSpec.describe Item, type: :model do
   end
 
   describe '商品の出品登録' do
+    let(:item) { FactoryBot.build(:item) }
     context '出品登録ができるとき' do
       it '全ての入力事項が、存在すれば登錻できる' do
         allow(@item).to receive_message_chain(:image, :attach)
@@ -16,11 +17,11 @@ RSpec.describe Item, type: :model do
         expect(@item).to be_valid
       end
       it '商品の状態が「---」以外であれば登録できる' do
-        @item.item_status_id = 1
+        @item.situation_id = 1
         expect(@item).to be_valid
       end
       it '配送料の負担が「---」以外であれば登録できる' do
-        @item.shipping_cost_id = 1
+        @item.load_id = 1
         expect(@item).to be_valid
       end
       it '発送元の地域が「---」以外であれば登録できる' do
@@ -36,7 +37,7 @@ RSpec.describe Item, type: :model do
         expect(@item).to be_valid
       end
     end
-
+    
     context '出品ができないとき' do
       it 'ユーザーが紐づいていないと出品できない' do
         @item.user = nil
@@ -44,9 +45,9 @@ RSpec.describe Item, type: :model do
         expect(@item.errors.full_messages).to include('User must exist')
       end
       it '１枚画像がないと出品できない' do
-        @item.image = nil
-        @item.valid?
-        expect(@item.errors.full_messages).to include("Image can't be blank")
+        item.image = nil
+        item.valid?
+        expect(item.errors.full_messages).to include("Image can't be blank")
       end
       it '商品名が空欄だと出品できない' do
         @item.title = nil

@@ -10,6 +10,7 @@ class Item < ApplicationRecord
   belongs_to :delivery
   
 
+  validates :image, presence: true
   validates :title, presence: true
   validates :explanation, presence: true
   validates :category, presence: true
