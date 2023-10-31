@@ -19,6 +19,9 @@ class Item < ApplicationRecord
   validates :prefecture, presence: true
   validates :delivery_id, presence: true
   validates :price, presence: true, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
+  validates_format_of :price, with: /\A[0-9]+\z/
+
+  
 
   validates :category_id, numericality: { other_than: 0 }
   validates :prefecture_id, numericality: { other_than: 0 }
