@@ -18,9 +18,7 @@ class Item < ApplicationRecord
   validates :load_id, presence: true
   validates :prefecture, presence: true
   validates :delivery_id, presence: true
-  validates :price, presence: true, numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
-  validates_format_of :price, with: /\A[0-9]+\z/
-
+  validates :price, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
   
 
   validates :category_id, numericality: { other_than: 0 }
@@ -31,9 +29,9 @@ class Item < ApplicationRecord
 
   attribute :quantity, :integer, default: 0
 
-  def sold_out?
-    return quantity == 0
-  end
+  #def sold_out?
+    #return quantity == 0
+  #end
 end
 
 
