@@ -29,9 +29,9 @@ class Item < ApplicationRecord
 
   attribute :quantity, :integer, default: 0
 
-  def sold_out?
-    return quantity == 0
-  end
+  #def sold_out?
+    #return quantity == 0
+  #end
 end
 
 
