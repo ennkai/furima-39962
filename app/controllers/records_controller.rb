@@ -1,6 +1,7 @@
 class RecordsController < ApplicationController
 
   def index
+    @record_form = RecordForm.new
   end
 
   def create
@@ -16,7 +17,7 @@ class RecordsController < ApplicationController
   private
 
   def record_params
-    params.require(:record_form).permit(:user_id, :item_id, :postal_code, :prefecture_id, :city, :house_number, :building_name, :telephone, :token)
+    params.require(:record_form).permit(:postal_code, :prefecture_id, :city, :house_number, :building_name, :telephone, :token).merge(user_id: current_user.id, item_id: params[:item_id], token: params[:token])
   end
 
 
