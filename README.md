@@ -48,11 +48,11 @@
 ### Association
 - belongs_to :user
 - belongs_to :item
-- has_one :information
+- has_one :payment
 
 
 
-## informations テーブル
+## payments テーブル
 
 
 | Columu                 | Type       | Options                           |
