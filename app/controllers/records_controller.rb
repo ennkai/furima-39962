@@ -1,17 +1,18 @@
 class RecordsController < ApplicationController
 
   def index
+    @item = Item.find(params[:item_id])
     @record_form = RecordForm.new
   end
 
   def create
-    @record_form = RecordForm.new(record_params)
+    @item = Item.find(params[:item_id])
+    @record_form = RecordForm.new(record_params.merge(item_id: @item.id))
     if @record_form.save
       redirect_to root_path
     else
-      render :create, status: :unprocessable_entity
+      render :index, status: :unprocessable_entity
     end
-
   end
 
   private
@@ -22,3 +23,5 @@ class RecordsController < ApplicationController
 
 
 end
+
+
