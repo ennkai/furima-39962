@@ -9,7 +9,7 @@ class RecordForm
   validates :prefecture_id, numericality: { other_than: 0 }
   validates :city, presence: true
   validates :house_number, presence: true
-  validates :telephone, format: { with: /\A[0-9]{11}\z/ }
+  validates :telephone, format: { with: /\A[0-9]{10,11}\z/ }
   validates :token, presence: true
 
 

@@ -2,7 +2,9 @@ require 'rails_helper'
 
 RSpec.describe RecordForm, type: :model do
   before do
-    @record_form = FactoryBot.build(:record_form)
+    user = FactoryBot.create(:user)
+    item = FactoryBot.create(:item)
+    @record_form = FactoryBot.build(:record_form, user_id: user.id, item_id: item.id)
   end
 
   describe '配送先情報の保存' do
@@ -97,6 +99,11 @@ RSpec.describe RecordForm, type: :model do
       end
       it '電話番号が12桁以上あると保存できないこと' do
         @record_form.telephone = '12345678910123111'
+        @record_form.valid?
+        expect(@record_form.errors.full_messages).to include('Telephone is invalid')
+      end
+      it '電話番号が11桁以下だと保存できないこと' do
+        @record_form.telephone = '123456789'
         @record_form.valid?
         expect(@record_form.errors.full_messages).to include('Telephone is invalid')
       end
