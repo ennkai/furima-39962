@@ -1,4 +1,6 @@
 class RecordsController < ApplicationController
+  before_action :authenticate_user!
+  before_action :non_purchased_item
 
   def index
     gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
@@ -32,6 +34,11 @@ class RecordsController < ApplicationController
       card: record_params[:token],    # カードトークン
       currency: 'jpy'                 # 通貨の種類（日本円）
     )
+  end
+
+  def non_purchased_item
+    @item = Item.find(params[:item_id])
+    redirect_to root_path if current_user.id == @item.user_id || @item.record.present?
   end
 
 
