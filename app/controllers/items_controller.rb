@@ -2,6 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_item, only: [:show, :edit, :update, :destroy]
   before_action :require_login, only: [:edit, :update]
+  before_action :require_non_purchased, only: [:edit, :update, :destroy]
 
   def index
     @items = Item.includes(:user).order(created_at: :desc)
@@ -60,6 +61,10 @@ class ItemsController < ApplicationController
     end
   end
 
-
+  def require_non_purchased
+    if @item.record.present?
+      redirect_to root_path
+    end
+  end
 
 end

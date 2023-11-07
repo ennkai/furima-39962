@@ -2,6 +2,7 @@ class Item < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   has_one_attached :image
   belongs_to :user
+  has_one :record
 
   belongs_to :category
   belongs_to :prefecture
