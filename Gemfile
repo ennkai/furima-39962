@@ -78,9 +78,6 @@ group :development do
   gem 'rubocop', require: false
 end
 
-group :production do
-  gem 'pg'
-end
 
 gem 'devise'
 
@@ -93,3 +90,7 @@ gem 'active_hash'
 gem 'payjp'
 
 gem 'gon'
+
+group :production do
+  gem 'unicorn', '6.1.0'
+end
