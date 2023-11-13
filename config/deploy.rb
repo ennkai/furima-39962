@@ -2,7 +2,7 @@
 lock "~> 3.18.0"
 
 set :application, "furima-39962"
-set :repo_url, "git@example.com:me/ennkai/furima-39962.git"
+set :repo_url,  'git@github.com:ennkai/furima-39962.git'
 
 
 set :branch, 'main'
